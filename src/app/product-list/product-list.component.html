@@ -1,0 +1,29 @@
+<div class="container">
+    <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; index as id">
+            <th scope="row">{{product.id}}</th>
+            <td>{{product.name}}</td>
+            <td>{{product.desc}}</td>
+            <td>{{product.price}}</td>
+            <td><a [title]="product.desc" [routerLink]="['/products', id]"><button class="btn btn-info">Show Info</button></a></td>
+          </tr>
+        </tbody>
+      </table>
+
+  <button (click)="share()" style="border:1px solid lightblue; padding:10px 20px 10px 20px; margin:1%; background-color:rgb(50, 132, 165); color: white; border-radius: 5px; width: 100%;">
+    Share
+  </button>
+
+</div>
+
+

@@ -1,0 +1,9 @@
+<div class="container" style="text-align: center; padding: 1%;">
+  <div style="width:200px;" style="position: center; border: 1px solid lightgrey; border-radius: 3px;padding: 12%;">
+    <img src="https://rog.asus.com/media\1578104129428.jpg" style="width: 50%; border-radius: 7px;">
+    <div *ngIf="product">
+      <h3>{{ product.name }}</h3>
+      <h4>{{ product.price | currency }}</h4>
+      <p>{{ product.desc}}</p>
+  </div>
+</div>
