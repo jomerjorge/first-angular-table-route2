@@ -1,3 +1,55 @@
+<nz-card style="width:100%;" nzTitle="Integrations" [nzExtra] ="extraTemplate" style="margin: 2%;">
+<nz-table #nzTable [nzData]="listOfDisplayData" style="width: 100%;">
+  <thead>
+    <tr>
+      <th nzCustomFilter>
+        Name
+        <i
+          nz-th-extra
+          class="ant-table-filter-icon"
+          nz-icon
+          nz-dropdown
+          #dropdown="nzDropdown"
+          nzType="search"
+          [nzDropdownMenu]="menu"
+          [class.ant-table-filter-open]="dropdown.nzVisible"
+          nzTrigger="click"
+          nzPlacement="bottomRight"
+          [nzClickHide]="false"
+          nzTableFilter
+        ></i>
+      </th>
+      <th>Description</th>
+      <th>Price</th>
+      <th nzShowFilter [nzFilters]="listOfFilterAddress" (nzFilterChange)="filterAddressChange($event)">Status</th>
+      <th style="width: 100px;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of nzTable.data; index as productid">
+      <td>{{ data.name }}</td>
+      <td>{{ data.desc }}</td>
+      <td>{{ data.price }}</td>
+      <td>{{ data.status }}</td>
+      <td><a [title]="data.desc" [routerLink]="['/products', productid]"><button nz-button nzType="primary" nzGhost>Show Info</button></a></td>
+    </tr>
+  </tbody>
+</nz-table>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="search-box">
+    <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+      Search
+    </button>
+    <button nz-button nzSize="small" (click)="reset()">Reset</button>
+  </div>
+</nz-dropdown-menu>
+
+</nz-card>
+<ng-template #extraTemplate>
+  <p>Total: 9076</p>
+</ng-template>
+<!--
 <div class="container">
     <table class="table table-bordered table-hover">
         <thead>
@@ -20,11 +72,11 @@
         </tbody>
       </table>
 
-  <button (click)="share()" style="border:1px solid lightblue; padding:10px 20px 10px 20px; margin:1%; background-color:rgb(50, 132, 165); color: white; border-radius: 5px; width: 100%;">
+<button (click)="share()" style="border:1px solid lightblue; padding:10px 20px 10px 20px; margin:1%; background-color:rgb(50, 132, 165); color: white; border-radius: 5px; width: 100%;">
     Share
   </button>
 
-</div>
+</div>-->
 
 
 

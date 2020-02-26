@@ -4,5 +4,6 @@ export interface Iproducts{
   desc: string;
   price: number;
   discount: string;
+  status: string;
 }
 
