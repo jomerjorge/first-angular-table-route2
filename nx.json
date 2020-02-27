@@ -1,0 +1,25 @@
+{
+  "npmScope": "followtutorial",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "followtutorial": {
+      "tags": []
+    },
+    "followtutorial-e2e": {
+      "tags": []
+    },
+    "front": {
+      "tags": []
+    },
+    "front-e2e": {
+      "tags": [],
+      "implicitDependencies": ["front"]
+    }
+  }
+}

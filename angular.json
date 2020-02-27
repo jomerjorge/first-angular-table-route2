@@ -1,27 +1,27 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
     "followtutorial": {
       "projectType": "application",
       "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/followtutorial",
+      "sourceRoot": "apps/followtutorial/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/followtutorial",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/followtutorial",
+            "index": "apps/followtutorial/src/index.html",
+            "main": "apps/followtutorial/src/main.ts",
+            "polyfills": "apps/followtutorial/src/polyfills.ts",
+            "tsConfig": "apps/followtutorial/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
+              "apps/followtutorial/src/favicon.ico",
+              "apps/followtutorial/src/assets",
               {
                 "glob": "**/*",
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
@@ -29,8 +29,8 @@
               }
             ],
             "styles": [
-              "src/theme.less",
-              "src/styles.css"
+              "apps/followtutorial/src/theme.less",
+              "apps/followtutorial/src/styles.css"
             ],
             "scripts": []
           },
@@ -38,8 +38,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/followtutorial/src/environments/environment.ts",
+                  "with": "apps/followtutorial/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -85,17 +85,15 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "apps/followtutorial/src/test.ts",
+            "polyfills": "apps/followtutorial/src/polyfills.ts",
+            "tsConfig": "apps/followtutorial/tsconfig.spec.json",
+            "karmaConfig": "apps/followtutorial/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/followtutorial/src/favicon.ico",
+              "apps/followtutorial/src/assets"
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "styles": ["apps/followtutorial/src/styles.css"],
             "scripts": []
           }
         },
@@ -103,19 +101,22 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/followtutorial/tsconfig.app.json",
+              "apps/followtutorial/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
-        },
+        }
+      }
+    },
+    "followtutorial-e2e": {
+      "projectType": "application",
+      "root": "apps/followtutorial-e2e",
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "protractorConfig": "apps/followtutorial-e2e/protractor.conf.js",
             "devServerTarget": "followtutorial:serve"
           },
           "configurations": {
@@ -123,9 +124,147 @@
               "devServerTarget": "followtutorial:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/followtutorial-e2e/tsconfig.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "front": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/front",
+      "sourceRoot": "apps/front/src",
+      "prefix": "followtutorial",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/front",
+            "index": "apps/front/src/index.html",
+            "main": "apps/front/src/main.ts",
+            "polyfills": "apps/front/src/polyfills.ts",
+            "tsConfig": "apps/front/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/front/src/favicon.ico", "apps/front/src/assets"],
+            "styles": ["apps/front/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/front/src/environments/environment.ts",
+                  "with": "apps/front/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "front:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "front:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "front:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/front/tsconfig.app.json",
+              "apps/front/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/front/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/front/src/test.ts",
+            "tsConfig": "apps/front/tsconfig.spec.json",
+            "karmaConfig": "apps/front/karma.conf.js",
+            "polyfills": "apps/front/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "front-e2e": {
+      "root": "apps/front-e2e",
+      "sourceRoot": "apps/front-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/front-e2e/cypress.json",
+            "tsConfig": "apps/front-e2e/tsconfig.e2e.json",
+            "devServerTarget": "front:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "front:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/front-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/front-e2e/**"]
+          }
         }
       }
     }
   },
-  "defaultProject": "followtutorial"
+  "defaultProject": "followtutorial",
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "karma"
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  }
 }

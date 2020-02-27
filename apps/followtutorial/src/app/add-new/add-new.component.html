@@ -1,0 +1,51 @@
+<div nz-row style="margin-top: 2%;">
+    <div nz-col nzXs="1" nzSm="1" nzMd="4" nzLg="4" nzXl="4">
+      
+    </div>
+    <div nz-col nzXs="22" nzSm="22" nzMd="16" nzLg="16" nzXl="16">
+
+       <div style="border: 1px solid lightgrey; border-radius: 2px; position:center; padding: 2% 23% 0% 23%;">
+        <form
+        nz-form
+        [nzLayout]="validateForm.get('formLayout')?.value"
+        [formGroup]="validateForm"
+        (ngSubmit)="submitForm()"
+      >
+        <nz-form-item>
+          <nz-form-label [nzSpan]="isHorizontal ? 4 : null">Form Layout</nz-form-label>
+          <nz-form-control [nzSpan]="isHorizontal ? 14 : null">
+            <nz-radio-group formControlName="formLayout">
+              <label nz-radio-button [nzValue]="'vertical'"> Agent</label>
+              <label nz-radio-button [nzValue]="'vertical'">Broker</label>
+              <label nz-radio-button [nzValue]="'vertical'">MLS</label>
+              <label nz-radio-button [nzValue]="'vertical'">Support</label>
+              <!--<label nz-radio-button [nzValue]="'inline'">Inline</label>-->
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="isHorizontal ? 4 : null">Field A</nz-form-label>
+          <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input your username!">
+            <input nz-input formControlName="fieldA" placeholder="input placeholder" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="isHorizontal ? 4 : null">Field B</nz-form-label>
+          <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input your Password!">
+            <input nz-input formControlName="filedB" placeholder="input placeholder" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="isHorizontal ? 14 : null" [nzOffset]="isHorizontal ? 4 : null">
+            <button nz-button nzType="primary">Submit</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+       </div>
+
+    </div>
+
+    <div nz-col nzXs="1" nzSm="1" nzMd="4" nzLg="4" nzXl="4">
+      
+    </div>
+  </div>
