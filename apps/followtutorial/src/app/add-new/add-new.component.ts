@@ -11,6 +11,7 @@ export class AddNewComponent implements OnInit {
   validateForm: FormGroup;
 
   submitForm(): void {
+    // tslint:disable-next-line: forin
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -26,8 +27,9 @@ export class AddNewComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       formLayout: ['horizontal'],
-      fieldA: [null, [Validators.required]],
-      filedB: [null, [Validators.required]]
+      txtname: [null, [Validators.required]],
+      txtabbrev: [null, [Validators.required]],
+      txtstate: [null, [Validators.required]],
     });
   }
 }
